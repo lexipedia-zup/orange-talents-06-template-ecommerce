@@ -1,12 +1,7 @@
 package br.com.zup.mercadolivre.user;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PastOrPresent;
+import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -14,18 +9,24 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @Email
+    @NotBlank
+    @Column(unique = true)
     private String email;
+    @NotBlank
+    @Size(min = 6)
     private String password;
+    @NotNull
+    @PastOrPresent
     private LocalDateTime registrationTime;
 
     public User() {
     }
 
-    public User(@NotBlank String email,
-                String password,
-                @NotNull @PastOrPresent LocalDateTime registrationTime) {
+    public User(@NotBlank @Email String email,
+                @NotBlank @Size(min = 6) String password) {
         this.email = email;
         this.password = password;
-        this.registrationTime = registrationTime;
+        this.registrationTime = LocalDateTime.now();
     }
 }

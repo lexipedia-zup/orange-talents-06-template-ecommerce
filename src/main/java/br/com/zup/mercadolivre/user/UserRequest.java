@@ -1,17 +1,17 @@
 package br.com.zup.mercadolivre.user;
 
+import br.com.zup.mercadolivre.validation.Unique;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.time.LocalDateTime;
 
 public class UserRequest {
 
     @NotBlank
     @Email
+    @Unique(domainClass = User.class, fieldName = "email", message = "Esse email já foi cadastrado")
     private String email;
     @NotBlank
     @Size(min = 6)
@@ -23,17 +23,11 @@ public class UserRequest {
         this.password = password;
     }
 
-    public String hashPassword(String password) throws NoSuchAlgorithmException {
-        MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
-        byte hash[] = algorithm.digest(password.getBytes(StandardCharsets.UTF_8));
-        StringBuilder hashedPassword = new StringBuilder();
-        for (byte b : hash) {
-            hashedPassword.append(String.format("%02X", 0xFF & b));
-        }
-        return hashedPassword.toString();
+    public String hashPassword(String password) {
+        return new BCryptPasswordEncoder().encode(password);
     }
 
-    public User toModel() throws NoSuchAlgorithmException {
-        return new User(this.email, hashPassword(this.password), LocalDateTime.now());
+    public User toModel(){
+        return new User(this.email, hashPassword(this.password));
     }
 }
