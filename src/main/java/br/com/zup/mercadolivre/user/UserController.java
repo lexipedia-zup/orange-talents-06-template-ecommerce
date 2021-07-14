@@ -19,11 +19,8 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<?> insert(@RequestBody @Valid UserRequest request) throws NoSuchAlgorithmException {
-
         User user = request.toModel();
-
         userRepository.save(user);
-
         return ResponseEntity.ok().build();
     }
 

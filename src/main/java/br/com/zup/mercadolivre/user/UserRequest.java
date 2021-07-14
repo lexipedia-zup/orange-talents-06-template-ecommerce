@@ -18,7 +18,7 @@ public class UserRequest {
     private String password;
 
     public UserRequest(@NotBlank @Email String email,
-                       @NotBlank @Size(max = 6) String password) {
+                       @NotBlank @Size(min = 6) String password) {
         this.email = email;
         this.password = password;
     }
