@@ -53,6 +53,5 @@ public class Product {
         this.category = category;
         this.registrationTime = LocalDateTime.now();
         this.user = user;
-        Assert.isTrue(particulars.size() <3, "");
     }
 }
