@@ -3,6 +3,7 @@ package br.com.zup.mercadolivre.product;
 import br.com.zup.mercadolivre.category.Category;
 import br.com.zup.mercadolivre.user.User;
 import br.com.zup.mercadolivre.validation.Exists;
+import br.com.zup.mercadolivre.validation.NoDuplicity;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -22,6 +23,7 @@ public class ProductRequest {
     private Integer avaliableQuantity;
     @Valid
     @Size(min = 3, message = "Devem haver ao menos 3 características")
+    @NoDuplicity(message = "Não podem haver características com nome duplicado.")
     private List<ParticularRequest> particularsRequest = new ArrayList<>();
     @NotBlank
     @Size(max = 1000, message = "Descrição muito longa. Deve conter no máximo 1000 caracteres.")
