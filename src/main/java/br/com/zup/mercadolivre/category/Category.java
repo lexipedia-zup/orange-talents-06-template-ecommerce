@@ -9,8 +9,6 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @Column(unique = true)
-    @NotBlank
     private String name;
     @ManyToOne
     private Category category;

@@ -1,5 +1,6 @@
 package br.com.zup.mercadolivre.user;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -15,16 +16,10 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @Email
-    @NotBlank
-    @Column(unique = true)
     private String email;
-    @NotBlank
-    @Size(min = 6)
     private String password;
-    @NotNull
-    @PastOrPresent
-    private LocalDateTime registrationTime;
+    @CreationTimestamp
+    private LocalDateTime registrationTime = LocalDateTime.now();
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Profile> profiles;
 
@@ -35,7 +30,6 @@ public class User implements UserDetails {
                 @NotBlank @Size(min = 6) String password) {
         this.email = email;
         this.password = password;
-        this.registrationTime = LocalDateTime.now();
     }
 
     @Override
