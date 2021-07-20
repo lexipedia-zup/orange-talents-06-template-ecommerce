@@ -1,8 +1,9 @@
 package br.com.zup.mercadolivre.product;
 
 import br.com.zup.mercadolivre.category.Category;
+import br.com.zup.mercadolivre.product.image.ProductImage;
+import br.com.zup.mercadolivre.product.particular.Particular;
 import br.com.zup.mercadolivre.user.User;
-import io.jsonwebtoken.lang.Assert;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -32,6 +33,8 @@ public class Product {
     private LocalDateTime registrationTime = LocalDateTime.now();
     @ManyToOne
     private User user;
+    @OneToMany(mappedBy = "product")
+    private List<ProductImage> images;
 
     @Deprecated
     public Product() {
@@ -53,5 +56,14 @@ public class Product {
         this.category = category;
         this.registrationTime = LocalDateTime.now();
         this.user = user;
+    }
+    
+    public Integer getUserId(){
+        return this.user.getId();
+    }
+
+    public void updateImage(List<ProductImage> images) {
+        this.images.addAll(images);
+
     }
 }

@@ -1,4 +1,6 @@
-package br.com.zup.mercadolivre.product;
+package br.com.zup.mercadolivre.product.particular;
+
+import br.com.zup.mercadolivre.product.Product;
 
 import javax.persistence.*;
 
@@ -30,4 +32,5 @@ public class Particular {
     public Particular convert(Product product) {
         return new Particular(this.name, this.description, product);
     }
+
 }

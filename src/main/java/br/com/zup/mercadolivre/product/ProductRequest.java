@@ -1,6 +1,7 @@
 package br.com.zup.mercadolivre.product;
 
 import br.com.zup.mercadolivre.category.Category;
+import br.com.zup.mercadolivre.product.particular.ParticularRequest;
 import br.com.zup.mercadolivre.user.User;
 import br.com.zup.mercadolivre.validation.Exists;
 import br.com.zup.mercadolivre.validation.NoDuplicity;

@@ -1,6 +1,6 @@
 package br.com.zup.mercadolivre.validation;
 
-import br.com.zup.mercadolivre.product.ParticularRequest;
+import br.com.zup.mercadolivre.product.particular.ParticularRequest;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

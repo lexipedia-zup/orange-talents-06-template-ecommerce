@@ -1,4 +1,4 @@
-package br.com.zup.mercadolivre.product;
+package br.com.zup.mercadolivre.product.particular;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
