@@ -25,10 +25,10 @@ public class ProductImageController {
     @Autowired
     private ProductImageRepository productImageRepository;
 
-    @PutMapping
+ /*   @PutMapping
     public ResponseEntity<?> update(@RequestBody @Valid ProductImageRequest request,
                                     @AuthenticationPrincipal User user){
-/*        Assert.isTrue(request.getLinks().size() == 0, "Deve passar ao menos uma imagem");*/
+*//*        Assert.isTrue(request.getLinks().size() == 0, "Deve passar ao menos uma imagem");*//*
         Product product = productRepository.findById(request.getProductId()).get();
         if(user.getId() != product.getUserId()){
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Você não pode inserir imagens em produtos de outros usuários");
@@ -40,5 +40,5 @@ public class ProductImageController {
         productRepository.save(product);
         return ResponseEntity.ok().build();
 
-    }
+    }*/
 }

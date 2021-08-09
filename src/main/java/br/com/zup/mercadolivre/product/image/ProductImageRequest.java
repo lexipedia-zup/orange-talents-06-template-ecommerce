@@ -2,20 +2,34 @@ package br.com.zup.mercadolivre.product.image;
 
 import br.com.zup.mercadolivre.product.Product;
 import br.com.zup.mercadolivre.validation.Exists;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProductImageRequest {
 
     @Size(min = 1)
-    private List<String> links;
+    @NotNull
+    private List<MultipartFile> images;
     @Exists(domainClass = Product.class, fieldName = "id", message = "O produto cadastrado não existe.")
     private Integer productId;
 
-    public ProductImageRequest() {
+
+    public Integer getProductId() {
+        return productId;
+    }
+
+    public List<MultipartFile> getImages() {
+        return images;
+    }
+
+    public void setImages(List<MultipartFile> images) {
+        this.images = images;
+    }
+
+    /* public ProductImageRequest() {
     }
 
     public ProductImageRequest(List<String> links, Integer productId) {
@@ -41,6 +55,6 @@ public class ProductImageRequest {
            productImageList.add(new ProductImage(link, product));
        }
        return productImageList;
-    }
+    }*/
 
 }

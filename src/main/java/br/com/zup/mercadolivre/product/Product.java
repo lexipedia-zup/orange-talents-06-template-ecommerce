@@ -34,7 +34,7 @@ public class Product {
     @ManyToOne
     private User user;
     @OneToMany(mappedBy = "product")
-    private List<ProductImage> images;
+    private Set<ProductImage> images = new HashSet<>();
 
     @Deprecated
     public Product() {
@@ -57,7 +57,7 @@ public class Product {
         this.registrationTime = LocalDateTime.now();
         this.user = user;
     }
-    
+
     public Integer getUserId(){
         return this.user.getId();
     }
