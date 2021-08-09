@@ -3,6 +3,7 @@ package br.com.zup.mercadolivre.product;
 import br.com.zup.mercadolivre.category.Category;
 import br.com.zup.mercadolivre.product.image.ProductImage;
 import br.com.zup.mercadolivre.product.particular.Particular;
+import br.com.zup.mercadolivre.question.Question;
 import br.com.zup.mercadolivre.user.User;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -35,6 +36,8 @@ public class Product {
     private User user;
     @OneToMany(mappedBy = "product")
     private Set<ProductImage> images = new HashSet<>();
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "product")
+    private List<Question> quesitons;
 
     @Deprecated
     public Product() {
@@ -64,6 +67,9 @@ public class Product {
 
     public void updateImage(List<ProductImage> images) {
         this.images.addAll(images);
+    }
 
+    public void updateQuestions(Question quesiton){
+        this.quesitons.add(quesiton);
     }
 }
